@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Slide CSS Demo</title>
+
+  <!-- link đến CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <div class="meta">test slide css của TP</div>
+
+  <section id="slide1" class="slide active" tabindex="-1" aria-label="Slide 1">
+    <h1>slide 1</h1>
+    <p class="lead">Bài slide CSS của TP. nội dung cho thêm.</p>
+    <div class="nav">
+      <a href="#slide4">⟵ Trước</a>
+      <a href="#slide2">Sau ⟶</a>
+    </div>
+    <div class="notes">nom nom, TP thích uống cà phê.</div>
+  </section>
+
+  <section id="slide2" class="slide" tabindex="-1" aria-label="Slide 2">
+    <h1>Nội dung slide 2</h1>
+    <p class="lead">thông tin của slide 2</p>
+    <div class="nav">
+      <a href="#slide1">⟵ Trước</a>
+      <a href="#slide3">Sau ⟶</a>
+    </div>
+    <div class="notes">Ghi chú: TP thích ăn phở.</div>
+  </section>
+
+  <section id="slide3" class="slide" tabindex="-1" aria-label="Slide 3">
+    <h1>Nội dung slide 3</h1>
+    <p class="lead">cho thêm mấy cái bla bla như <code>&lt;img&gt;</code>, video, iframe, hoặc code snippet.</p>
+    <div class="nav">
+      <a href="#slide2">⟵ Trước</a>
+      <a href="#slide4">Sau ⟶</a>
+    </div>
+    <div class="notes">Ghi chú: TP bị thiếu ngủ.</div>
+  </section>
+
+  <section id="slide4" class="slide" tabindex="-1" aria-label="Slide 4">
+    <h1>Kết luận</h1>
+    <p class="lead">BYE! Đây là slide cuối</p>
+    <div class="nav">
+      <a href="#slide3">⟵ Trước</a>
+      <a href="#slide1">Sau ⟶</a>
+    </div>
+    <div class="notes">Ghi chú: TP ngại giao tiếp.</div>
+  </section>
+
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('section.slide'));
+  let idx = 0;
+
+  function show(i){
+    slides.forEach(s => s.classList.remove('active'));
+    idx = (i + slides.length) % slides.length;
+    const s = slides[idx];
+    s.classList.add('active');
+    location.hash = s.id;
+    s.focus();
+  }
+
+  const start = window.location.hash ? slides.findIndex(s=>('#'+s.id)==location.hash) : 0;
+  show(start >= 0 ? start : 0);
+
+  window.addEventListener('keydown', e=>{
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { show(idx+1); e.preventDefault() }
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')   { show(idx-1); e.preventDefault() }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End')  show(slides.length-1);
+  });
+
+  window.addEventListener('hashchange', ()=> {
+    const i = slides.findIndex(s => '#'+s.id === location.hash);
+    if (i>=0) show(i);
+  });
+</script>
+
+</body>
+</html>
