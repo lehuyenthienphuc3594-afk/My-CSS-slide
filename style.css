@@ -1,3 +1,4 @@
+
 html,body {
   height:100%;
   margin:0;
@@ -95,11 +96,19 @@ p.lead {
   }
 }
 
+p {
+  margin-bottom: 0; /* Bỏ khoảng cách dưới đoạn văn */
+  margin-top: 0;
+}
+
 /* slide backgrounds */
 #slide1 {background:linear-gradient(135deg,#042a2b 0%, #0b2a4a 100%)}
 #slide2 {background:linear-gradient(135deg,#3b1f2b 0%, #1b2b3a 100%)}
 #slide3 {background:linear-gradient(135deg,#2b3b1f 0%, #12323a 100%)}
 #slide4 {background:linear-gradient(135deg,#2b1f3b 0%, #1a123a 100%)}
+#slide5 {background:linear-gradient(135deg,#cfa20b 0%, #a21f33 100%)}
+#slide6 {background:linear-gradient(135deg,#28647d 0%, #0b2a4a 100%)}
+#slide7 {background:linear-gradient(135deg,#a21f33 0%, #28647d 100%)}
 
 /* mobile tweaks */
 @media (max-width:700px){
